@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: ai-service
+
+  data:
+    mongodb:
+      url: ${MONGODB_URI}
+      database: ${MONGODB_DATABASE}
+
+  rabbitmq:
+    addresses: ${RABBITMQ_ADDRESSES}
+    ssl:
+      enabled: true
+
+  ai:
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+          temperature: 0.7
+      embeddings:
+        options:
+          model: text-embedding-3-small
+          dimensions: 1024
+
+    vectorstore:
+      pgvector:
+        table-name: vector_store
+        initialize-schema: false
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:init/schema.sql
+
+rabbitmq:
+  queue:
+    activity-queue: activity_queue
+    nutrition-queue: nutrition_queue
+    user-queue: user_queue
+
+aws:
+
+  db:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8073
