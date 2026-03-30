@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Data
-@ConfigurationProperties("aws.db")
-public class DatabaseProperties {
+@ConfigurationProperties("aws.postgres-db")
+public class PostgreDBProperties {
 
     private String url;
     private String username;
     private String password;
+    private String driverClassName;
 }
