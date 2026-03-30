@@ -2,16 +2,6 @@ spring:
   application:
     name: ai-service
 
-  data:
-    mongodb:
-      url: ${MONGODB_URI}
-      database: ${MONGODB_DATABASE}
-
-  rabbitmq:
-    addresses: ${RABBITMQ_ADDRESSES}
-    ssl:
-      enabled: true
-
   ai:
     chat:
       memory:
@@ -19,21 +9,21 @@ spring:
           jdbc:
             initialize-schema: always
 
-    openai:
-      api-key: ${OPENAI_API_KEY}
+    ollama:
+      base-url: http://localhost:11434
       chat:
         options:
-          model: gpt-4o-mini
-          temperature: 0.7
-      embeddings:
+          model: mistral:latest
+          num-ctx: 8192
+
+      embedding:
         options:
-          model: text-embedding-3-small
-          dimensions: 1024
+          model: nomic-embed-text:latest
 
     vectorstore:
       pgvector:
         table-name: vector_store
-        initialize-schema: false
+        initialize-schema: true
 
   sql:
     init:
@@ -41,18 +31,29 @@ spring:
       schema-locations: classpath:init/schema.sql
 
 rabbitmq:
+  addresses: /Fittrack/ai-srvc/rabbitmq/addresses
   queue:
     activity-queue: activity_queue
     nutrition-queue: nutrition_queue
     user-queue: user_queue
 
 aws:
+  ssm:
+    region: ap-south-1
 
-  db:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+  iam-user:
+    accessKey: /Fittrack/accessKey
+    secretKey: /Fittrack/secretKey
+
+  postgres-db:
+    url: /Fittrack/ai-srvc/postgres-db/url
+    username: /Fittrack/ai-srvc/postgres-db/username
+    password: /Fittrack/ai-srvc/postgres-db/password
     driver-class-name: org.postgresql.Driver
+
+mongodb:
+  uri: /Fittrack/ai-srvc/mongodb/uri
+  database: /Fittrack/ai-srvc/mongodb/database
 
 eureka:
   client:
@@ -60,4 +61,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 server:
-  port: 8073
+  port: 8083
