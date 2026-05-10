@@ -31,7 +31,7 @@ spring:
       schema-locations: classpath:init/schema.sql
 
 rabbitmq:
-  addresses: /Fittrack/ai-srvc/rabbitmq/addresses
+  addresses: /Fittrack/rabbitmq/addresses
   queue:
     activity-queue: activity_queue
     nutrition-queue: nutrition_queue
@@ -46,9 +46,9 @@ aws:
     secretKey: /Fittrack/secretKey
 
   postgres-db:
-    url: /Fittrack/ai-srvc/postgres-db/url
-    username: /Fittrack/ai-srvc/postgres-db/username
-    password: /Fittrack/ai-srvc/postgres-db/password
+    url: /Fittrack/postgres-db/url
+    username: /Fittrack/postgres-db/username
+    password: /Fittrack/postgres-db/password
     driver-class-name: org.postgresql.Driver
 
 mongodb:
