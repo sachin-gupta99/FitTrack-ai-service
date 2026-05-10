@@ -23,10 +23,6 @@ public class PostgreDBConfig {
         String dbUsername = parameterStoreService.getParameterValue(databaseProperties.getUsername());
         String dbPassword = parameterStoreService.getParameterValue(databaseProperties.getPassword());
 
-        System.out.println("Fetched dbUrl: " + dbUrl);
-        System.out.println("Fetched dbUsername: " + dbUsername);
-        System.out.println("Fetched dbPassword: " + dbPassword);
-
         return DataSourceBuilder.create()
                 .url(dbUrl)
                 .username(dbUsername)
