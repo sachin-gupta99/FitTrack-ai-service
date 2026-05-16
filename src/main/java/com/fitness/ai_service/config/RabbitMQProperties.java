@@ -12,5 +12,14 @@ import org.springframework.context.annotation.Configuration;
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class RabbitMQProperties {
 
-    String addresses;
+    String uri;
+    RabbitMQQueue queue = new RabbitMQQueue();
+
+    @Data
+    @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
+    public static class RabbitMQQueue {
+        String activityQueue;
+        String nutritionQueue;
+        String userQueue;
+    }
 }
