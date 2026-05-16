@@ -24,7 +24,7 @@ public class RabbitMQConfig {
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        String addresses = parameterStoreService.getParameterValue(rabbitMQProperties.getAddresses());
+        String addresses = parameterStoreService.getParameterValue(rabbitMQProperties.getUri());
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
         connectionFactory.setUri(addresses);
         return connectionFactory;
