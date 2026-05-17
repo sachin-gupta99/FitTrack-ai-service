@@ -77,8 +77,8 @@ aws:
     driver-class-name: org.postgresql.Driver
 
 mongodb:
-  uri: /Fittrack/ai-srvc/mongodb/uri
-  database: /Fittrack/ai-srvc/mongodb/database
+  uri: /Fittrack/mongodb/uri
+  database: /Fittrack/mongodb/database
 
 eureka:
   client:
