@@ -5,7 +5,7 @@ spring:
   ai:
     model:
       chat: openai
-      embedding: ollama
+      embedding: none
       image: none
       moderation: none
       audio:
@@ -21,23 +21,19 @@ spring:
       embedding:
         enabled: false
 
+    google:
+      genai:
+        embedding:
+          options:
+            model: gemini-embedding-001
+        chat:
+          enabled: false
+
     chat:
       memory:
         repository:
           jdbc:
             initialize-schema: always
-
-    ollama:
-      base-url: http://localhost:11434
-#      chat:
-#        options:
-#          model: mistral:latest
-#          num-ctx: 8192
-      embedding:
-        options:
-          model: nomic-embed-text:latest
-      chat:
-        enabled: false
 
     vectorstore:
       pgvector:
@@ -53,6 +49,11 @@ groq:
   api-key: /Fittrack/ai-srvc/groq/apiKey
   base-url: https://api.groq.com/openai
   chat-model: llama-3.3-70b-versatile
+
+google:
+  genai:
+    api-key: /Fittrack/ai-srvc/gemini/apiKey
+    embedding-model: gemini-embedding-001
 
 rabbitmq:
   uri: /Fittrack/rabbitmq/uri
